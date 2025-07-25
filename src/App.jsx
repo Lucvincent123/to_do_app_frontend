@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate,  } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import './App.css';
 
@@ -9,7 +9,7 @@ import RegisterForm from "./components/RegisterForm/RegisterForm";
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/home" element={<h1>Home Page Content</h1>} />
@@ -19,7 +19,7 @@ function App() {
         <Route path="/register" element={<RegisterForm/>} />
         <Route path="*" element={<NotFoundPage/>} />
       </Routes>
-    </div>
+    </>
   )
 }
 

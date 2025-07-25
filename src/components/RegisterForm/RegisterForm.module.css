@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.Form {
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,15 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
 
+.backLink {
+  color: var(--color-blue);
+  text-decoration: none;
+  font-size: 14px;
+  align-self: flex-start;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .title {
@@ -66,15 +74,6 @@
   font-size: 14px;
 }
 
-.backLink {
-  color: var(--color-blue);
-  text-decoration: none;
-  font-size: 14px;
-  align-self: flex-start;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
 .footerText {
   font-size: 14px;
   margin-top: 10px;
@@ -88,4 +87,10 @@
 .showPasswordLabel {
   margin-left: 10px;
   cursor: pointer;
+}
+
+
+.error {
+  color: red;
+  font-size: 14px;
 }
