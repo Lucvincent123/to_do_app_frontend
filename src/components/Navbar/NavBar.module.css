@@ -1,0 +1,27 @@
+.navbar_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px 20px; */
+  background-color: var(--color-orange-dark);
+  height: 60px;
+}
+
+.navbar_list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+}
+
+.navbar_item {
+  color: white;
+  cursor: pointer;
+  width: 100%;  
+}
+
+.navbar_item_link {
+  color: var(--color-beige);
+  text-decoration: none;
+}
