@@ -6,6 +6,8 @@ import HomePage from './components/HomePage/HomePage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
+import ResetPasswordForm from "./components/ResetPasswordForm/ResetPasswordForm";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -15,8 +17,10 @@ function App() {
         <Route path="/home" element={<h1>Home Page Content</h1>} />
         <Route path="/about" element={<h1>About Page Content</h1>} />
         <Route path="/contact" element={<h1>Contact Page Content</h1>} />
+        <Route path="/dashboard/:userId" element={<Dashboard/>} />
         <Route path="/login" element={<LoginForm/>} />
         <Route path="/register" element={<RegisterForm/>} />
+        <Route path="/reset-password" element={<ResetPasswordForm/>} />
         <Route path="*" element={<NotFoundPage/>} />
       </Routes>
     </>
