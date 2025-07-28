@@ -60,7 +60,7 @@ export default function RegisterForm() {
             // Handle error, e.g., show a message to the user
             setError(error.message || 'An error occurred during registration');           
         }
-    }, [ username, email, password, confirmPassword ]);
+    }, [ username, email, password, confirmPassword, navigate ]);
     // Render
     return (
         <div className={styles.wrapper}>

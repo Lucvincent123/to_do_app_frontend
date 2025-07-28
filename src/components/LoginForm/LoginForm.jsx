@@ -47,6 +47,7 @@ export default function LoginForm() {
             // Handle successful login, e.g., store token, redirect, etc.
             console.log('Login successful:', data);
             // Redirect to home page after successful login
+            document.cookie = `token=${data.token}; path=/; max-age=3600`; // Store token in cookie
             navigate(`/dashboard/${data.userId}`, { replace: true });
         } catch (error) {
             setIsLoading(false);
