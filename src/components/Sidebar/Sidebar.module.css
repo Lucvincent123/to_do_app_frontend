@@ -1,0 +1,55 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: var(--color-orange-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebarHeader {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    color: white;
+    margin: 5px 0 5px 5px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px ;
+}
+
+.username {
+    font-size: 1.2rem;
+}
+
+.id {
+    font-size: 0.8rem;
+}
+
+.email {
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.sidebarList {
+    width: 100%;
+}
+
+.sidebarItem {
+    color: white;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+}
+
+.sidebarItem:hover {
+    background-color: var(--color-blue);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}

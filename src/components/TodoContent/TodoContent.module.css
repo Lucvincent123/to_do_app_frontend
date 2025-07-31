@@ -1,0 +1,93 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.leftMenu {
+    margin-right: 40px;
+}
+
+.headerButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    background-color: var(--color-orange-light);
+    margin: 0 15px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+
+.headerButton:hover {
+    background-color: var(--color-orange-dark);
+    color: white;
+}
+
+
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.task {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    width: 200px;
+}
+
+.task:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.taskTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.completed {
+    border: 2px solid green;
+}
+
+.pending {
+    border: 2px solid orange;
+}
+
+.inProgress {
+    border: 2px solid blue;
+}
+
+.completed .taskStatus {
+    color: green;
+}
+
+.pending .taskStatus {
+    color: orange;
+}
+
+.inProgress .taskStatus {
+    color: blue;
+}
