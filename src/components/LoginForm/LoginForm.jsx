@@ -12,7 +12,6 @@ import Loading from '../Loading/Loading';
 import useGlobalState from '../../contexts/global';
 
 import { setUser } from '../../contexts/global/actions';
-import path from '../../path';
 
 export default function LoginForm() {
     // Navigation
@@ -55,7 +54,7 @@ export default function LoginForm() {
                 // Redirect to home page after successful login
                 document.cookie = `token=${data.token}; path=/; max-age=3600`; // Store token in cookie
                 globalDispatch(setUser({ id: data.userId, username: data.username, email: data.email }));
-                navigate(path(globalState.entry), { replace: true });
+                navigate(globalState.entry, { replace: true });
                 setRefresh(!refresh);
             } catch (error) {
                 setIsLoading(false);
@@ -70,7 +69,7 @@ export default function LoginForm() {
         <div className={styles.wrapper}>
             <div className={styles.form}>
                 <p className={styles.backLink}>
-                    <Link to={path('/')} className={styles.link}>
+                    <Link to='/' className={styles.link}>
                         &#9668; Back to home
                     </Link>
                 </p>
@@ -115,13 +114,13 @@ export default function LoginForm() {
                 {error && <p className={styles.error}>* {error} *</p>}
                 <p className={styles.footerText}>
                     Forgot your password?{' '}
-                    <Link className={styles.link} to={path('/reset-password')}>
+                    <Link className={styles.link} to='/reset-password'>
                         Reset password
                     </Link>
                 </p>
                 <p className={styles.footerText}>
                     Don't have an account?{' '}
-                    <Link className={styles.link} to={path('/register')}>
+                    <Link className={styles.link} to='/register'>
                         Register here
                     </Link>
                 </p>

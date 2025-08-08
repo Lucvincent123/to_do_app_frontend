@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <GlobalProvider>
-            <BrowserRouter>
+            <BrowserRouter basename='/to_do_app_frontend'>
                 <App />
             </BrowserRouter>
         </GlobalProvider>

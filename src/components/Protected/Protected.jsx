@@ -6,7 +6,6 @@ import useGlobalState from '../../contexts/global';
 import { useAuth } from '../../contexts/auth';
 import { setEntry } from '../../contexts/global/actions';
 import { useEffect } from 'react';
-import path from '../../path';
 
 export default function Protected({ children }) {
     const isAuthenticated = useAuth();
@@ -16,7 +15,7 @@ export default function Protected({ children }) {
 
     useEffect(() => {
         console.log(isAuthenticated);
-        if (!isAuthenticated) navigate(path('/login'));
+        if (!isAuthenticated) navigate('/login');
         globalDispatch(setEntry(location));
     }, [globalDispatch, isAuthenticated, location, navigate]);
 

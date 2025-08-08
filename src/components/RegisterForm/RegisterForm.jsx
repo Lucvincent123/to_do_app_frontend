@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useCallback } from 'react';
-import path from '../../path';
 
 import styles from './RegisterForm.module.css';
 
@@ -53,7 +52,7 @@ export default function RegisterForm() {
                     throw new Error(data.message || 'Registration failed');
                 }
                 setIsLoading(false);
-                navigate(path('/login'), { replace: true });
+                navigate('/login', { replace: true });
             } catch (error) {
                 setIsLoading(false);
                 console.error('Registration failed:', error);
@@ -68,7 +67,7 @@ export default function RegisterForm() {
         <div className={styles.wrapper}>
             <div className={styles.form}>
                 <p className={styles.backLink}>
-                    <Link to={path('/')} className={styles.link}>
+                    <Link to='/' className={styles.link}>
                         &#9668; Back to home
                     </Link>
                 </p>
@@ -145,7 +144,7 @@ export default function RegisterForm() {
                 {error && <p className={styles.error}>* {error} *</p>}
                 <p className={styles.footerText}>
                     Already have an account?{' '}
-                    <Link className={styles.link} to={path('/login')}>
+                    <Link className={styles.link} to='/login'>
                         Login now
                     </Link>
                 </p>

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import styles from './ResetPasswordForm.module.css';
-import path from '../../path';
 
 export default function ResetPasswordForm() {
     // States
@@ -16,7 +15,7 @@ export default function ResetPasswordForm() {
         <div className={styles.wrapper}>
             <div className={styles.form}>
                 <p className={styles.backLink}>
-                    <Link to={path('/')} className={styles.link}>
+                    <Link to='/' className={styles.link}>
                         &#9668; Back to home
                     </Link>
                 </p>
@@ -40,13 +39,13 @@ export default function ResetPasswordForm() {
                 </form>
                 <p className={styles.footerText}>
                     Suddenly remember your password?{' '}
-                    <Link className={styles.link} to={path('/login')}>
+                    <Link className={styles.link} to='/login'>
                         Login now
                     </Link>
                 </p>
                 <p className={styles.footerText}>
                     Don't have an account?{' '}
-                    <Link className={styles.link} to={path('/register')}>
+                    <Link className={styles.link} to='/register'>
                         Register here
                     </Link>
                 </p>

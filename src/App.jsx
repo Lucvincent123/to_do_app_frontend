@@ -14,7 +14,6 @@ import About from './components/About/About';
 
 import useGlobalState from './contexts/global';
 import { useEffect } from 'react';
-import path from './path';
 import { setUser } from './contexts/global/actions';
 
 function App() {
@@ -63,21 +62,21 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path={path('/')} element={<HomePage />} />
-                <Route path={path('/about')} element={<About />} />
-                <Route path={path('/contact')} element={<Contact />} />
+                <Route path='/' element={<HomePage />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/contact' element={<Contact />} />
                 <Route
-                    path={path('/dashboard/')}
+                    path='/dashboard'
                     element={
                         <Protected>
                             <Dashboard />
                         </Protected>
                     }
                 />
-                <Route path={path('/login')} element={<LoginForm />} />
-                <Route path={path('/register')} element={<RegisterForm />} />
-                <Route path={path('/reset-password')} element={<ResetPasswordForm />} />
-                <Route path={path('/*')} element={<NotFoundPage />} />
+                <Route path='/login' element={<LoginForm />} />
+                <Route path='/register' element={<RegisterForm />} />
+                <Route path='/reset-password' element={<ResetPasswordForm />} />
+                <Route path='*' element={<NotFoundPage />} />
             </Routes>
         </>
     );

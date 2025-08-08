@@ -1,5 +1,4 @@
 import styles from './Sidebar.module.css';
-import path from '../../path';
 
 import { Link } from 'react-router-dom';
 import useGlobalState from '../../contexts/global';
@@ -35,7 +34,7 @@ export default function Sidebar({ setContent }) {
                 </li>
             </ul>
             <div className={styles.footer}>
-                <Link to={path('/')} className={styles.link} onClick={() => setRefresh(!refresh)}>
+                <Link to='/' className={styles.link} onClick={() => setRefresh(!refresh)}>
                     &#9668; Back to home
                 </Link>
             </div>

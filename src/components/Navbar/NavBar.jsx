@@ -4,7 +4,6 @@ import useGlobalState from '../../contexts/global';
 
 import styles from './NavBar.module.css';
 import { useState } from 'react';
-import path from '../../path';
 
 export default function NavBar() {
     const [globalState, , refresh, setRefresh] = useGlobalState();
@@ -24,19 +23,19 @@ export default function NavBar() {
             <ul className={styles.navbarList}>
                 <div className={styles.separateMenu}></div>
                 <li className={styles.navbarItem}>
-                    <Link className={styles.navbarItemText} to={path('/')}>
+                    <Link className={styles.navbarItemText} to='/'>
                         Home
                     </Link>
                 </li>
                 <div className={styles.separateMenu}></div>
                 <li className={styles.navbarItem}>
-                    <Link className={styles.navbarItemText} to={path('/about')}>
+                    <Link className={styles.navbarItemText} to='/about'>
                         About
                     </Link>
                 </li>
                 <div className={styles.separateMenu}></div>
                 <li className={styles.navbarItem}>
-                    <Link className={styles.navbarItemText} to={path('/contact')}>
+                    <Link className={styles.navbarItemText} to='/contact'>
                         Contact
                     </Link>
                 </li>
@@ -47,12 +46,12 @@ export default function NavBar() {
                         <i className={`fa-solid fa-caret-down ${styles.caret}`}></i>
                         <ul className={styles.dropdownMenu}>
                             <li className={styles.dropdownItem}>
-                                <Link className={styles.dropdownItemText} to={path('/link1')}>
+                                <Link className={styles.dropdownItemText} to='/link1'>
                                     Link 1
                                 </Link>
                             </li>
                             <li className={styles.dropdownItem}>
-                                <Link className={styles.dropdownItemText} to={path('/link2')}>
+                                <Link className={styles.dropdownItemText} to='/link2'>
                                     Link 2
                                 </Link>
                             </li>
@@ -65,13 +64,13 @@ export default function NavBar() {
                 <ul className={styles.navbarList}>
                     <div className={styles.separateMenu}></div>
                     <li className={styles.navbarItem}>
-                        <Link className={styles.navbarItemText} to={path('/login')}>
+                        <Link className={styles.navbarItemText} to='/login'>
                             Login
                         </Link>
                     </li>
                     <div className={styles.separateMenu}></div>
                     <li className={styles.navbarItem}>
-                        <Link className={styles.navbarItemText} to={path('/register')}>
+                        <Link className={styles.navbarItemText} to='/register'>
                             Register
                         </Link>
                     </li>
