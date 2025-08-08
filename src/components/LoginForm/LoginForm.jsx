@@ -44,10 +44,11 @@ export default function LoginForm() {
                     },
                     body: JSON.stringify({ email, password }),
                 });
-                const data = (await response.json()).data;
+                const json = await response.json();
+                const data = json.data;
                 setIsLoading(false);
                 if (!response.ok) {
-                    throw new Error(data.message || 'Login failed');
+                    throw new Error(json.message || 'Login failed');
                 }
                 // Handle successful login, e.g., store token, redirect, etc.
                 console.log('Login successful:', data);
