@@ -12,6 +12,7 @@ import Loading from '../Loading/Loading';
 import useGlobalState from '../../contexts/global';
 
 import { setUser } from '../../contexts/global/actions';
+import path from '../../path';
 
 export default function LoginForm() {
     // Navigation
@@ -54,14 +55,14 @@ export default function LoginForm() {
                 // Redirect to home page after successful login
                 document.cookie = `token=${data.token}; path=/; max-age=3600`; // Store token in cookie
                 globalDispatch(setUser({ id: data.userId, username: data.username, email: data.email }));
-                navigate(globalState.entry, { replace: true });
+                navigate(path(globalState.entry), { replace: true });
                 setRefresh(!refresh);
             } catch (error) {
                 setIsLoading(false);
                 setError(error.message || 'An error occurred during login');
             }
         },
-        [email, password, navigate],
+        [email, password, navigate, globalDispatch, globalState.entry, refresh, setRefresh],
     );
 
     // Render
@@ -69,7 +70,7 @@ export default function LoginForm() {
         <div className={styles.wrapper}>
             <div className={styles.form}>
                 <p className={styles.backLink}>
-                    <Link to='/' className={styles.link}>
+                    <Link to={path('/')} className={styles.link}>
                         &#9668; Back to home
                     </Link>
                 </p>
@@ -114,13 +115,13 @@ export default function LoginForm() {
                 {error && <p className={styles.error}>* {error} *</p>}
                 <p className={styles.footerText}>
                     Forgot your password?{' '}
-                    <Link className={styles.link} to='/reset-password'>
+                    <Link className={styles.link} to={path('/reset-password')}>
                         Reset password
                     </Link>
                 </p>
                 <p className={styles.footerText}>
                     Don't have an account?{' '}
-                    <Link className={styles.link} to='/register'>
+                    <Link className={styles.link} to={path('/register')}>
                         Register here
                     </Link>
                 </p>
