@@ -1,0 +1,29 @@
+#edit-task-form--pending:hover {
+    background-color: orange;
+    color: white;
+}
+
+#edit-task-form--in-progress:hover {
+    background-color: var(--color-blue);
+    color: white;
+}
+
+#edit-task-form--completed:hover {
+    background-color: green;
+    color: white;
+}
+
+#edit-task-form--pending.checked {
+    background-color: orange;
+    color: white;
+}
+
+#edit-task-form--in-progress.checked {
+    background-color: var(--color-blue);
+    color: white;
+}
+
+#edit-task-form--completed.checked {
+    background-color: green;
+    color: white;
+}

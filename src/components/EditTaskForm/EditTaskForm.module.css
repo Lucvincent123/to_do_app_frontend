@@ -73,6 +73,26 @@
     font-size: 18px;
 }
 
+.statusGroup {
+    display: flex;
+    width: calc(100% - 160px);
+    height: 20px;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    border: 2px solid black;
+    padding: auto;
+    cursor: pointer;
+    padding: 12px 0px;
+}
+
 .buttonGroup {
     display: flex;
     justify-content: center;

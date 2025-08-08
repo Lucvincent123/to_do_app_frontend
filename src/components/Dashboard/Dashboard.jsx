@@ -1,55 +1,83 @@
-import { useParams } from "react-router-dom";
+// Import hooks
 import { useEffect, useState } from 'react';
 
+// Import css
 import styles from './Dashboard.module.css';
 
-import Sidebar from "../Sidebar/Sidebar";
-import TodoContent from "../TodoContent/TodoContent.jsx";
-import AddTaskForm from "../AddTaskForm/AddTaskForm.jsx";
+// Import component
+import Sidebar from '../Sidebar/Sidebar';
+import TodoContent from '../TodoContent/TodoContent.jsx';
+import AddTaskForm from '../AddTaskForm/AddTaskForm.jsx';
+import useGlobalState from '../../contexts/global/index.js';
 
-
+import { setUser, setEntry } from '../../contexts/global/actions.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
-    const { userId } = useParams();
-    const [ content, setContent ] = useState('todo');
-    const [ id, setId ] = useState('');
-    const [ username, setUsername ] = useState('');
-    const [ email, setEmail ] = useState('');
-    const [ isAdding, setIsAdding] = useState(false);
-    const [ refresh, setRefresh] = useState(false);
+    const [content, setContent] = useState('all');
+
+    const [isAdding, setIsAdding] = useState(false);
+    const [refresh, setRefresh] = useState(false);
     const sidebarWidth = 250;
+    const [globalState, globalDispatch] = useGlobalState();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("refresh")
-        const fetchUserData = async () => {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/${userId}`, {
-                    headers: {
-                        'authorization': `Bearer ${document.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1]}`
-                    }
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user data');
-                }
-                const data = await response.json();
-                console.log(data);
-                setId(data._id);
-                setUsername(data.username);
-                setEmail(data.email);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
+        if (!globalState.user) {
+            const tokenString = document.cookie.split('; ').find((row) => row.startsWith('token='));
+            if (!tokenString) {
+                globalDispatch(setEntry('/dashboard'));
+                navigate('/login');
+                return;
             }
+            const token = tokenString.split('=')[1];
+            if (!token) {
+                globalDispatch(setEntry('/dashboard'));
+                navigate('/login');
+                return;
+            }
+            const fetchUserInfo = async () => {
+                try {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/info/`, {
+                        headers: {
+                            authorization: `Bearer ${token}`,
+                        },
+                    });
+                    if (!response.ok) {
+                        throw new Error();
+                    }
+                    const json = await response.json();
+                    if (!json.success) {
+                        throw new Error();
+                    }
+                    globalDispatch(
+                        setUser({ id: json.data._id, username: json.data.username, email: json.data.email }),
+                    );
+                } catch {
+                    globalDispatch(setEntry('/dashboard'));
+                    navigate('/login');
+                }
+            };
+            fetchUserInfo();
         }
-        fetchUserData();
-        
-    }, [userId, refresh]);
-    console.log("hello");
-    console.log(content);
+    }, [globalDispatch, globalState.user, navigate]);
+
     return (
         <div className={styles.wrapper}>
-            <Sidebar setContent={setContent} username={username} email={email} id={id} width={sidebarWidth}/>
-            <TodoContent marginLeft={sidebarWidth} setIsAdding={setIsAdding} refresh={setRefresh}/>
-            {isAdding && <AddTaskForm setIsAdding={setIsAdding}/>}
+            <div className={styles.sidebar}>
+                <Sidebar setContent={setContent} />
+            </div>
+            <div className={styles.content}>
+                {content === 'all' && (
+                    <TodoContent
+                        marginLeft={sidebarWidth}
+                        setIsAdding={setIsAdding}
+                        refresh={refresh}
+                        setRefresh={setRefresh}
+                    />
+                )}
+            </div>
+            {isAdding && <AddTaskForm setIsAdding={setIsAdding} refresh={refresh} setRefresh={setRefresh} />}
         </div>
     );
 }
