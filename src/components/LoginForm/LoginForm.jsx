@@ -77,11 +77,11 @@ export default function LoginForm() {
                 <h2 className={styles.title}>Login form</h2>
                 <form onSubmit={handleLogin}>
                     <div className={styles.formGroup}>
-                        <label htmlFor='username'>Email:</label>
+                        <label htmlFor='email'>Email:</label>
                         <input
                             className={styles.input}
-                            type='text'
-                            id='username'
+                            type='email'
+                            id='email'
                             value={email}
                             required
                             onChange={(e) => setEmail(e.target.value)}

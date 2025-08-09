@@ -1,13 +1,37 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
+import Loading from '../Loading/Loading';
+
 import styles from './ResetPasswordForm.module.css';
 
 export default function ResetPasswordForm() {
     // States
     const [email, setEmail] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [sent, setSent] = useState('Send');
 
     // Handlers
+    const submitHandle = async (event) => {
+        event.preventDefault();
+        setIsLoading(true);
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/reset-password`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+            const json = await response.json();
+            setIsLoading(false);
+            if (!json.success) throw new Error(json.message);
+            setSent('Resend');
+        } catch (error) {
+            setIsLoading(false);
+            console.log(error.message);
+        }
+    };
 
     // Render
 
@@ -20,7 +44,7 @@ export default function ResetPasswordForm() {
                     </Link>
                 </p>
                 <h2 className={styles.title}>Reset password form</h2>
-                <form>
+                <form onSubmit={submitHandle}>
                     <div className={styles.formGroup}>
                         <label htmlFor='email'>Email:</label>
                         <input
@@ -34,7 +58,7 @@ export default function ResetPasswordForm() {
                         />
                     </div>
                     <button type='submit' className={styles.button}>
-                        Send
+                        {sent}
                     </button>
                 </form>
                 <p className={styles.footerText}>
@@ -50,6 +74,7 @@ export default function ResetPasswordForm() {
                     </Link>
                 </p>
             </div>
+            {isLoading && <Loading />}
         </div>
     );
 }
